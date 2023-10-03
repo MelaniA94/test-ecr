@@ -1,11 +1,9 @@
-import ballerina/http;
 
-# Exact time (in UTC) and day of a week up to minute precision.
+import ballerina/http;
+import ballerina/constraint;
+import ballerina/time;
 
 type TimeAndDayOfWeek record {|
-
- # Hour of the day (UTC)
-
  @constraint:Int {
 
  minValue: 0,
@@ -46,17 +44,17 @@ type ScheduledTask record {|
 
  # Task trigger endpoint
 
- @constraint:String {
+// @constraint:String {
 
- pattern: {
+//  pattern: {
 
- value: re `^http[s]?://.*`,
+//  value: re `^http[s]?://.*`,
 
- message: "Endpoint should be a valid HTTP URL"
+//  message: "Endpoint should be a valid HTTP URL"
 
- }
+//  }
 
- }
+//  }
 
  string endpoint;
 
@@ -80,4 +78,3 @@ service / on new http:Listener(9090) {
         return "Service is healthy";
     }
 }
-
